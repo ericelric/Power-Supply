@@ -1,0 +1,10 @@
+#powers.transitions-enabled
+  - @powers.each do |power|
+    .box.panel.panel-default.js_box{'data-state' => power.state}
+      %button.btn.switch.btn-on.js_on{'data-id' => power.id} on
+      %button.btn.switch.btn-off.js_off{'data-id' => power.id} off
+      .panel-body
+        - if user_signed_in?
+          %h2= link_to power.title, power
+        - else
+          %h2= power.title

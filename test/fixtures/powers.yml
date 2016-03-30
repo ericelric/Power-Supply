@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  code_on: MyString
+  code_off: MyString
+  state: false
+
+two:
+  title: MyString
+  code_on: MyString
+  code_off: MyString
+  state: false

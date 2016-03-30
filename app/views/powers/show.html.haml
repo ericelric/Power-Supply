@@ -1,0 +1,24 @@
+.power_show.row
+  .col-md-8.col-md-offset-2
+    .panel.panel-default
+      .panel-body
+        %h1= @power.title
+        %p.description
+          Code on:
+          %span= @power.code_on
+        %p.description
+          Code off:
+          %span= @power.code_off
+        %p.description
+          Status:
+          - if @power.state == false
+            %span off
+          - else
+            %span on
+
+      .panel-footer
+        .row
+          .col-md-12
+            .btn-group
+              = link_to 'Edit', edit_power_path, class: 'btn btn-default'
+              = link_to 'Delete', power_path, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-default'
