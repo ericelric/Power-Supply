@@ -1,8 +1,12 @@
 class PowersController < ApplicationController
+  before_filter :require_login
   before_action :find_power, only: [:show, :edit, :update, :destroy, :switch_on, :switch_off]
 
   def index
     @powers = Power.all.order('created_at DESC')
+     if @powers.empty?
+       flash[:notice] = "Hey, add a switch above to begin!"
+     end
   end
 
   def show
@@ -41,7 +45,7 @@ class PowersController < ApplicationController
     @power.state = true
     @power.save
 
-    system('echo', 'blubb ' + @power.code_on)
+    system('echo', 'path to send script ' + @power.code_on)
     render text: 'on'
   end
 
@@ -49,7 +53,7 @@ class PowersController < ApplicationController
     @power.state = false
     @power.save
 
-    system('echo', 'blubb ' + @power.code_off)
+    system('echo', 'path to send script ' + @power.code_off)
     render text: 'off'
   end
 
