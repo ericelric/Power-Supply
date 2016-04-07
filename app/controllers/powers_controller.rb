@@ -1,4 +1,6 @@
 class PowersController < ApplicationController
+  $raspberry_remote_path = 'sudo home/pi/raspberry-remote/send '
+
   before_filter :require_login
   before_action :find_power, only: [:show, :edit, :update, :destroy, :switch_on, :switch_off]
 
@@ -45,7 +47,7 @@ class PowersController < ApplicationController
     @power.state = true
     @power.save
 
-    system('echo', 'path to send script ' + @power.code_on)
+    system($raspberry_remote_path + @power.code_on)
     render text: 'on'
   end
 
@@ -53,7 +55,7 @@ class PowersController < ApplicationController
     @power.state = false
     @power.save
 
-    system('echo', 'path to send script ' + @power.code_off)
+    system($raspberry_remote_path + @power.code_off)
     render text: 'off'
   end
 
